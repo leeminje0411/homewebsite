@@ -1,7 +1,7 @@
-
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
 export default async function Gallery() {
   // 가상의 임시 데이터 (사진 URL 배열)
   const photos = [
@@ -29,7 +29,7 @@ export default async function Gallery() {
               src={photo.url}
               alt={`Placeholder ${photo.id}`}
               className="w-full h-auto object-cover"
-               width={500} // 원하는 너비
+              width={500} // 원하는 너비
               height={300}
             />
           </div>

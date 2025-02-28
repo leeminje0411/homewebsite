@@ -1,15 +1,6 @@
 import React from "react"
 import Gallery from "./component/gallery"
 import MyTable from "./component/table"
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
 
 export default function DatePickerDemo() {
   // const [date, setDate] = React.useState(null)

@@ -3,7 +3,7 @@ import  {supabase}  from '@/lib/db';
 import { NextResponse } from 'next/server';
 import jwt from "jsonwebtoken";
 
-
+const jwtSecret = process.env.TOKEN_SECRET;
 
 export async function POST(req) {
 
@@ -12,7 +12,7 @@ export async function POST(req) {
     if(id === 'admin' && password === 'admin'){
           const token = jwt.sign(
         { userId: id }, // payload에 유저 식별 정보
-       'sex',
+       jwtSecret,
             { expiresIn: "1h" } // 토큰 만료 시간
               );        
         const response = NextResponse.json({ message: '로그인 성공' }, { status: 200 });

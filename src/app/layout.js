@@ -1,12 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "./component/Navigation";
-import SideNaigation from "./component/sideNavigation";
 import FontAwesomeConfig from "./fontawesome";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import  {supabase}  from '@/lib/db';
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"; // 개발환경과 배포환경 자동 분기
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

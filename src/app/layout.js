@@ -25,20 +25,20 @@ export const metadata = {
 const jwtSecret = process.env.TOKEN_SECRET;
 
 export default async function RootLayout({ children }) {
-  // const token = await cookies().get("token")?.value;
-  // let kakaoAccount = null;
-  // let result = null;
-  // if (token) {
-  //   try {
-  //     // 2) JWT 검증
-  //     const decoded = jwt.verify(token, jwtSecret);
-  //     result = await supabase.from('profile').select('*').eq('kakaoId', decoded.kakaoId).single();
-  //     kakaoAccount = result.data;
-  //   } catch (err) {
-  //     // 토큰 만료 or 검증 실패
-  //     console.log("Invalid token");
-  //   }
-  // }
+  const token = await cookies().get("token")?.value;
+  let kakaoAccount = null;
+  let result = null;
+  if (token) {
+    try {
+      // 2) JWT 검증
+      const decoded = jwt.verify(token, jwtSecret);
+      result = await supabase.from('profile').select('*').eq('kakaoId', decoded.kakaoId).single();
+      kakaoAccount = result.data;
+    } catch (err) {
+      // 토큰 만료 or 검증 실패
+      console.log("Invalid token");
+    }
+  }
 
   return (
    <html>
@@ -47,11 +47,11 @@ export default async function RootLayout({ children }) {
       </head>
       <body className="bg-gray-100"> {/* Ensure body has Tailwind classes if needed */}
         <header> 
-        {/* <Navigation kakaoAccount={kakaoAccount}></Navigation> */}
+        <Navigation kakaoAccount={kakaoAccount}></Navigation>
         </header>
         <main>
           <div className="flex">
-            {/* <SideNaigation></SideNaigation> */}
+        
           {children}
           </div>
         </main>

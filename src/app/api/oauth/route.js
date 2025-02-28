@@ -2,7 +2,14 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { supabase } from "@/lib/db";
 import { cookies } from "next/headers";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"; // 개발환경과 배포환경 자동 분기
 
+const response = await fetch(`${BASE_URL}/api/schedule`, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 export async function POST(req) {
   try {
     const { code } = await req.json();
@@ -18,7 +25,7 @@ export async function POST(req) {
       body: new URLSearchParams({
         grant_type: "authorization_code",
         client_id: '25c1623109e7ac126df4e70791261b05',
-        redirect_uri: "http://localhost:3000/oauth",
+        redirect_uri: BASE_URL+"/oauth",
         code: code,
       }),
     });

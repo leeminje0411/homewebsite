@@ -23,44 +23,44 @@ import {
   faCircleUser,
 } from "@fortawesome/free-regular-svg-icons";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
- export function Profile({ kakaoAccount}) {
+export function Profile({ kakaoAccount }) {
   const router = useRouter();
   const handleLogout = async () => {
     await fetch("/api/logout", { method: "POST" }); // ✅ 로그아웃 요청 보내기
     window.location.href = "/";
   };
- return (
-  <Popover>
-    <PopoverTrigger>
-      <div className="flex items-center space-x-2 cursor-pointer">
-        <span className="font-bold text-base">{kakaoAccount.nickname}</span>
-        <Image
-          src={kakaoAccount.imgUrl}
-          alt="profile"
-          width={50}
-          height={50}
-          className="rounded-full border border-gray-300 shadow-md"
-        />
-      </div>
-      {console.log(kakaoAccount)}
-    </PopoverTrigger>
-     <PopoverContent className="w-48 p-2 bg-white shadow-lg rounded-lg border">
-      <p className="text-sm text-gray-600">안녕하세요, {kakaoAccount.nickname}님!</p>
-      <Button
-        onClick={handleLogout}
-        variant="destructive"
-        className="w-full mt-2"
-      >
-        로그아웃
-      </Button>
-    </PopoverContent>
-  </Popover>
-);
- }
+  return (
+    <Popover>
+      <PopoverTrigger>
+        <div className="flex items-center space-x-2 cursor-pointer">
+          <span className="font-bold text-base">{kakaoAccount.nickname}</span>
+          <Image
+            src={kakaoAccount.imgUrl}
+            alt="profile"
+            width={50}
+            height={50}
+            className="rounded-full border border-gray-300 shadow-md"
+          />
+        </div>
+        {console.log(kakaoAccount)}
+      </PopoverTrigger>
+      <PopoverContent className="w-48 p-2 bg-white shadow-lg rounded-lg border">
+        <p className="text-sm text-gray-600">안녕하세요, {kakaoAccount.nickname}님!</p>
+        <Button
+          onClick={handleLogout}
+          variant="destructive"
+          className="w-full mt-2"
+        >
+          로그아웃
+        </Button>
+      </PopoverContent>
+    </Popover>
+  );
+}
 
-
-export default function Navigation({kakaoAccount}) {
+export default function Navigation({ kakaoAccount }) {
   const pathname = usePathname();
   const router = useRouter();
   const handleLogout = async () => {
@@ -73,12 +73,11 @@ export default function Navigation({kakaoAccount}) {
   // 모바일 검색어
   const [searchQuery, setSearchQuery] = useState("");
 
-
   const topNavItems = [
-   { name: "홈", href: "/", icon: faHome },
-  { name: "일정", href: "/Calendar", icon: faCalendar },
-  { name: "갤러리", href: "/Contact", icon: faCompass },
-  { name: "공지사항", href: "/Nofi", icon: faBell },
+    { name: "홈", href: "/", icon: faHome },
+    { name: "일정", href: "/Calendar", icon: faCalendar },
+    { name: "갤러리", href: "/Contact", icon: faCompass },
+    { name: "공지사항", href: "/Nofi", icon: faBell },
   ];
 
   // 사이드바(메인 섹션)
@@ -114,7 +113,7 @@ export default function Navigation({kakaoAccount}) {
   return (
     <div className="relative">
       {/* 상단바 (헤더 영역) */}
-      <header className="flex items-center justify-between bg-black px-4  text-white">
+      <header className="flex items-center justify-between bg-black px-4 text-white">
         <div className="flex items-center space-x-3">
           {/* 햄버거 버튼 */}
           <button
@@ -133,23 +132,18 @@ export default function Navigation({kakaoAccount}) {
 
         {/* 오른쪽 아이콘들 (예: 일정, 프로필) */}
         <div className="flex items-center space-x-3">
-        
-        
-            
-            { kakaoAccount ? (
-              <>     <Profile kakaoAccount={kakaoAccount} /> 
-              </>)
-            :   <Link href="https://kauth.kakao.com/oauth/authorize?client_id=25c1623109e7ac126df4e70791261b05&redirect_uri=http://localhost:3000/oauth&response_type=code&prompt=login" className="hover:bg-gray-800 p-2 rounded-full">
-            <FontAwesomeIcon icon={faCircleUser} className="text-2xl" /> 
-          </Link> }
-            
-        
+          {kakaoAccount ? (
+            <> <Profile kakaoAccount={kakaoAccount} /> </>
+          ) : (
+            <Link href={`https://kauth.kakao.com/oauth/authorize?client_id=25c1623109e7ac126df4e70791261b05&redirect_uri=${BASE_URL}/oauth&response_type=code&prompt=login`} className="hover:bg-gray-800 p-2 rounded-full">
+              <FontAwesomeIcon icon={faCircleUser} className="text-2xl" />
+            </Link>
+          )}
         </div>
       </header>
 
       {/* 검색창 (모바일 전용, 데스크톱에선 숨김) */}
- 
-{/* 
+      {/* 
       상단바 아래 탭(데스크톱 전용)
       <nav className="bg-white border-b hidden md:block">
         <ul className="flex space-x-4 p-2">

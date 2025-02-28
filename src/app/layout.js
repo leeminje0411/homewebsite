@@ -6,6 +6,7 @@ import FontAwesomeConfig from "./fontawesome";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import  {supabase}  from '@/lib/db';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"; // 개발환경과 배포환경 자동 분기
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,6 @@ export const metadata = {
 const jwtSecret = process.env.TOKEN_SECRET;
 
 export default async function RootLayout({ children }) {
-
   const token = await cookies().get("token")?.value;
   let kakaoAccount = null;
   let result = null;
@@ -35,14 +35,11 @@ export default async function RootLayout({ children }) {
       const decoded = jwt.verify(token, jwtSecret);
       result = await supabase.from('profile').select('*').eq('kakaoId', decoded.kakaoId).single();
       kakaoAccount = result.data;
-     
     } catch (err) {
       // 토큰 만료 or 검증 실패
       console.log("Invalid token");
     }
   }
-
-
 
   return (
    <html>
@@ -53,17 +50,12 @@ export default async function RootLayout({ children }) {
         <header> 
         <Navigation kakaoAccount={kakaoAccount}></Navigation>
         </header>
-      
-        
-        
         <main>
           <div className="flex">
             {/* <SideNaigation></SideNaigation> */}
           {children}
           </div>
-        
         </main>
-       
       </body>
     </html>
   );

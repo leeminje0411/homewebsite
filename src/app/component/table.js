@@ -3,9 +3,6 @@ import Wrting from './writing'
 import  {supabase}  from '@/lib/db';
 import convert24To12 from '@/lib/conver24To12'
 import dateCutter from '@/lib/dateCutter';
-import Image from "next/image";
-import { Button } from "@/components/ui/button1"; // ✅ 올바른 경로 확인
-import ClientTableRow from './ClientTableRow';
 import {
   Table,
   TableBody,
@@ -18,7 +15,7 @@ import {
 const schedulePath = '/api/schedule'
 const chargePath = '/api/charge'
 import ClientDeleteButton from './ClientDeleteButton';
-
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 export default async function MyTable({className, typeOfTable}) {
   let apiPath = typeOfTable === 'schedule' ? schedulePath : chargePath;
@@ -36,7 +33,7 @@ export default async function MyTable({className, typeOfTable}) {
   console.log('apiPath: 여기로 날립니다', apiPath)
 
     await new Promise((resolve, reject)=>{
-      fetch('http://localhost:3000'+apiPath, {
+      fetch(BASE_URL +apiPath, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

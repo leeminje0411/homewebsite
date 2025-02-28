@@ -1,5 +1,3 @@
-import React from 'react'
-import  {supabase}  from '@/lib/db';
 import { NextResponse } from 'next/server';
 import jwt from "jsonwebtoken";
 

@@ -36,7 +36,7 @@ export async function POST(req) {
 
   let payload;
   try {
-    payload = jwt.verify(token, "my_secret_key");
+    payload = jwt.verify(token, process.env.TOKEN_SECRET);
     console.log('Payload:', payload); // Log the payload to see its contents
   } catch (err) {
     console.error('JWT Verification Error:', err); // Log any errors during verification

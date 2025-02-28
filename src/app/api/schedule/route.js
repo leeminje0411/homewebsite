@@ -37,7 +37,7 @@ export async function POST(req) {
 
   let payload;
   try {
-    payload = jwt.verify(token, "my_secret_key");
+    payload = jwt.verify(token, process.env.TOKEN_SECRET);
     console.log('Payload:', payload); // Log the payload to see its contents
   } catch (err) {
     console.error('JWT Verification Error:', err); // Log any errors during verification
@@ -88,7 +88,7 @@ export async function DELETE(req) {
   // ✅ 요청한 사용자가 작성자인지 확인
   const { data: post } = await supabase.from("schedule").select("writer").eq("id", id).single();
 
-  
+
   if (!post || post.writer !== payload.id) {
     return NextResponse.json({ error: "삭제 권한이 없습니다." }, { status: 403 });
   }

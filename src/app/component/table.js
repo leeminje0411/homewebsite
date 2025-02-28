@@ -15,7 +15,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import e from 'cors';
 const schedulePath = '/api/schedule'
 const chargePath = '/api/charge'
 import ClientDeleteButton from './ClientDeleteButton';

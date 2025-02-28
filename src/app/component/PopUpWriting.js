@@ -41,19 +41,15 @@ export default function PopUpWriting({isClicked, setIsClicked, apiPath}) {
     })
   }
   const sendFormData = async (e) => {
-    
-    // if(formData.name === "" || formData.textarea === "" || formData.startTime === "" || formData.endTime === ""){
-    //   alert('모든 항목을 입력해주세요')
-    //   return
-    // }
+    // Fetch for sending form data
     setIsLoading(true);
-    await fetch(apiPath, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
+    // await fetch(apiPath, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(formData)
+    // })
     setIsLoading(false);
     router.refresh();
     setIsClicked(false);

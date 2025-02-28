@@ -4,12 +4,7 @@ import { supabase } from "@/lib/db";
 import { cookies } from "next/headers";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"; // 개발환경과 배포환경 자동 분기
 
-const response = await fetch(`${BASE_URL}/api/schedule`, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+
 export async function POST(req) {
   try {
     const { code } = await req.json();
@@ -65,7 +60,7 @@ export async function POST(req) {
     }
 
     // 🔹 4) JWT 생성 & 쿠키 저장
-    const token = jwt.sign({ kakaoId: userId , id : existingUser.id}, 'my_secret_key', { expiresIn: "1h" });
+    const token = jwt.sign({ kakaoId: userId , id : existingUser.id}, process.env.TOKEN_SECRET, { expiresIn: "1h" });
 
 
     const response = NextResponse.json({ message: "로그인 성공" });

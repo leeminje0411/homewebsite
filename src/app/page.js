@@ -8,11 +8,11 @@ export default function DatePickerDemo() {
   return (
     <>
       <div className="w-full">
-        <Gallery />
+        {/* <Gallery /> */}
         
         <div className="flex flex-wrap justify-around">
-          <MyTable typeOfTable="schedule" className=" w-full md:w-1/3" />
-          <MyTable typeOfTable="charge"className=" w-full md:w-1/3" />
+          {/* <MyTable typeOfTable="schedule" className=" w-full md:w-1/3" />
+          <MyTable typeOfTable="charge"className=" w-full md:w-1/3" /> */}
         </div>
       </div>
       

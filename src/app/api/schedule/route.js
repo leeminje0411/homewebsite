@@ -28,7 +28,7 @@ return NextResponse.json(enrichedData);
 
 
 export async function POST(req) {
-  console.log('앙기모씨');
+  console.log('방았어요~');
   const token = await cookies().get("token")?.value;
 
   if (!token) {

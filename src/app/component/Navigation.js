@@ -25,6 +25,8 @@ import {
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
+
+
 export function Profile({ kakaoAccount }) {
   const router = useRouter();
   const handleLogout = async () => {
@@ -145,7 +147,7 @@ export default function Navigation({ kakaoAccount }) {
       {/* 검색창 (모바일 전용, 데스크톱에선 숨김) */}
       {/* 
       상단바 아래 탭(데스크톱 전용)
-      <nav className="bg-white border-b hidden md:block">
+      <nav className="bg-white border-b hidden xmd:block">
         <ul className="flex space-x-4 p-2">
           {topNavItems.map((item, i) => (
             <li key={i}>

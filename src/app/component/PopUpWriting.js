@@ -41,15 +41,16 @@ export default function PopUpWriting({isClicked, setIsClicked, apiPath}) {
     })
   }
   const sendFormData = async (e) => {
-    // Fetch for sending form data
+
     setIsLoading(true);
-    // await fetch(apiPath, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(formData)
-    // })
+    console.log('apiPath가 뭔지 보여드림', apiPath)
+    await fetch(apiPath, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
     setIsLoading(false);
     router.refresh();
     setIsClicked(false);
@@ -70,12 +71,7 @@ export default function PopUpWriting({isClicked, setIsClicked, apiPath}) {
           </CardHeader>
             
               <CardContent className="space-y-2">
-              
-               {/* <div className="space-y-1">
-                  <Label htmlFor={dbColumn[0]}>{tableHeader[0]}</Label>
-                  <Input id={dbColumn[0]}  onChange={formDataHandler} value={formData[dbColumn[0]]}/>
-                </div> */}
-              
+
                 <div className="space-y-1"> 
                  
                 { apiPath==='/api/schedule' ? ( 

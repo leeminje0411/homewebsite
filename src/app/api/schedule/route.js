@@ -73,7 +73,7 @@ export async function DELETE(req) {
 
   let payload;
   try {
-    payload = jwt.verify(token, "my_secret_key");
+    payload = jwt.verify(token, process.env.TOKEN_SECRET);
   } catch (err) {
     return NextResponse.json({ error: "토큰이 유효하지 않습니다." }, { status: 403 });
   }

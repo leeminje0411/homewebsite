@@ -60,7 +60,7 @@ export default function PopUpWriting({isClicked, setIsClicked, apiPath}) {
 
 
     return (
-<Tabs defaultValue="account" className="w-[400px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+<Tabs defaultValue="account" class  Name="w-[400px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
       <TabsContent value="account">
         <Card>
           <CardHeader>
